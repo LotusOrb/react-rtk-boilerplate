@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { TodoCard } from '../../features/todo/component/TodoCard/TodoCard';
 import { thunkTodoRead } from '../../features/todo/state/todo.action';
-import { useComponentDidMount } from '../../features/_shared/helper/useComponentDidMount/useComponentDidMount';
+import { useComponentDidMount } from '../../features/_shared/hook/useComponentDidMount/useComponentDidMount';
 import { useStoreDispatch } from '../../features/_shared/hook/useStoreDispatch/useStoreDispatch';
 import { useStoreSelector } from '../../features/_shared/hook/useStoreSelector/useStoreSelector';
 
