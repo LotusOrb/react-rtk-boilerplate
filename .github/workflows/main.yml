@@ -23,7 +23,7 @@ jobs:
 
          - name: BUILD 🎉
            run: |
-              npm run build -- --max_old_space_size=512
+              CI=false npm run build -- --max_old_space_size=512
 
          - name: List Output File
            run: find build/ -print

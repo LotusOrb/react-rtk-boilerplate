@@ -1,12 +1,11 @@
-import { ActionReducerMapBuilder, createAsyncThunk } from '@reduxjs/toolkit';
-import { WritableDraft } from '@reduxjs/toolkit/node_modules/immer/dist/internal';
+import { ActionReducerMapBuilder, createAsyncThunk, Draft } from '@reduxjs/toolkit';
 import BaseApiService from '../../_shared/service/BaseApiService';
 import { ITodoState } from '../types/todoState.type';
 
 const service = new BaseApiService();
 
 export const todoActionBuilder = {
-	resetTodoState: (state: WritableDraft<ITodoState>) => {
+	resetTodoState: (state: Draft<ITodoState>) => {
 		state = {
 			status_CREATE: 'IDLE',
 			status_READ: 'IDLE',
