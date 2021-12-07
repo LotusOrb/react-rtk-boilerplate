@@ -1,0 +1,30 @@
+on:
+   push:
+      branches:
+         - master
+         - main
+name: Deploy To Production Server
+jobs:
+   deployment:
+      name: CI/CD START
+      runs-on: ubuntu-latest
+      steps:
+         - name: GET LASTEST COMMIT
+           uses: actions/checkout@v2
+
+         - name: USE NODE 14
+           uses: actions/setup-node@v2-beta
+           with:
+              node-version: '14.15.4'
+
+         - name: INSTALL DEPS
+           run: |
+              npm install
+
+         - name: BUILD 🎉
+           run: |
+              npm run build -- --max_old_space_size=512
+
+         - name: List Output File
+           run: find build/ -print
+           #  TODO: Add Deploy to server

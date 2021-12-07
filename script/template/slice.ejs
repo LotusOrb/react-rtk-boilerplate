@@ -1,0 +1,15 @@
+import { createSlice } from '@reduxjs/toolkit';
+import { baseSlice } from '../../_shared/store/baseSlice';
+import { I<%= name %>State } from '../types/<%= name %>State.type';
+import { <%= name %>ActionBuilder, <%= name %>ActionThunkBuilder } from './<%= name %>.action';
+
+const initialState: I<%= name %>State = Object.assign({ data: [] }, baseSlice);
+
+const <%= name %>Slice = createSlice({
+	name: '<%= name %>',
+	initialState: initialState,
+	reducers: <%= name %>ActionBuilder,
+	extraReducers: <%= name %>ActionThunkBuilder,
+});
+
+export const <%= name %>Reducer = <%= name %>Slice.reducer;

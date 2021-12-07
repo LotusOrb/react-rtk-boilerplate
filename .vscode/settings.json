@@ -1,0 +1,24 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "prettier.endOfLine": "lf",
+    "files.eol": "\n",
+    "editor.insertSpaces": false,
+    "css.lint.unknownAtRules": "ignore",
+    "[javascriptreact]": {
+        "editor.folding": true,
+        "editor.foldingStrategy": "indentation",
+        "editor.showFoldingControls": "always",
+        "editor.snippetSuggestions": "top",
+        "editor.detectIndentation": true,
+        "files.eol": "\n"
+    },
+    "html-css-class-completion.includeGlobPattern": "src/**/*.{css,html,jsx,tsx,scss}",
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "files.eol": "\n"
+    }
+}

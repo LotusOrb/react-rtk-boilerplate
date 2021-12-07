@@ -1,0 +1,12 @@
+{
+    "Create TS Component/Container": {
+        "scope": "typescript, typescriptreact",
+        "prefix": "rc",
+        "body": [
+            "import React from 'react';\n",
+            "interface I${TM_FILENAME_BASE}Props {$2}\n",
+            "export const ${TM_FILENAME_BASE}: React.FC<I${TM_FILENAME_BASE}Props> = (\n\tparam\n) => {\n\treturn (\n\t\t<React.Fragment>\n\t\t\t<div>{$3}</div>\n\t\t</React.Fragment>\n\t);\n};\n"
+        ],
+        "description": "Create Typescript arrow function component"
+    },
+}

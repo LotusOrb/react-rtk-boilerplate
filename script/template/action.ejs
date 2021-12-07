@@ -1,0 +1,93 @@
+import { ActionReducerMapBuilder, createAsyncThunk } from '@reduxjs/toolkit';
+import { WritableDraft } from '@reduxjs/toolkit/node_modules/immer/dist/internal';
+import BaseApiService from '../../_shared/service/BaseApiService';
+import { I<%= name %>State } from '../types/<%= name %>State.type';
+
+const service = new BaseApiService();
+
+export const <%= name %>ActionBuilder = {
+	reset<%= name %>State: (state: WritableDraft<I<%= name %>State>) => {
+		state = {
+			status_CREATE: 'IDLE',
+			status_READ: 'IDLE',
+			status_UPDATE: 'IDLE',
+			status_DELETE: 'IDLE',
+			message: '',
+		};
+	},
+};
+
+export const thunk<%= name %>Create = createAsyncThunk(
+	'<%= name %>/thunk/create',
+	async (payload: any, thunk) => await service.basePOST('<%= name %>s')
+);
+
+export const thunk<%= name %>Read = createAsyncThunk(
+	'<%= name %>/thunk/read',
+	async (payload: any, thunk) => await service.baseGET('<%= name %>s')
+);
+
+export const thunk<%= name %>Update = createAsyncThunk(
+	'<%= name %>/thunk/update',
+	async (payload: any, thunk) => await service.basePUT('<%= name %>s')
+);
+
+export const thunk<%= name %>Delete = createAsyncThunk(
+	'<%= name %>/thunk/delete',
+	async (payload: any, thunk) => await service.baseDELETE('<%= name %>s')
+);
+
+export const <%= name %>ActionThunkBuilder = (
+	builder: ActionReducerMapBuilder<I<%= name %>State>
+) =>
+	builder
+		.addCase(thunk<%= name %>Create.pending, (state) => {
+			state.message = '';
+			state.status_CREATE = 'LOADING';
+		})
+		.addCase(thunk<%= name %>Create.fulfilled, (state, { payload }) => {
+			state.message = state.message;
+			if (!payload.isFailed) {
+				state.status_CREATE = 'SUCCESS';
+				state.data = payload.original;
+			} else {
+				state.status_CREATE = 'FAILED';
+			}
+		})
+		.addCase(thunk<%= name %>Read.pending, (state) => {
+			state.message = '';
+			state.status_READ = 'LOADING';
+		})
+		.addCase(thunk<%= name %>Read.fulfilled, (state, { payload }) => {
+			state.message = state.message;
+			if (!payload.isFailed) {
+				state.status_READ = 'SUCCESS';
+				state.data = payload.original?.data;
+			} else {
+				state.status_READ = 'FAILED';
+			}
+		})
+		.addCase(thunk<%= name %>Update.pending, (state) => {
+			state.message = '';
+			state.status_UPDATE = 'LOADING';
+		})
+		.addCase(thunk<%= name %>Update.fulfilled, (state, { payload }) => {
+			state.message = state.message;
+			if (!payload.isFailed) {
+				state.status_UPDATE = 'SUCCESS';
+			} else {
+				state.status_UPDATE = 'FAILED';
+			}
+		})
+		.addCase(thunk<%= name %>Delete.pending, (state) => {
+			state.message = '';
+			state.status_DELETE = 'LOADING';
+		})
+		.addCase(thunk<%= name %>Delete.fulfilled, (state, { payload }) => {
+			state.message = state.message;
+			if (!payload.isFailed) {
+				state.status_DELETE = 'SUCCESS';
+			} else {
+				state.status_DELETE = 'FAILED';
+			}
+		});

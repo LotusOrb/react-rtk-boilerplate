@@ -1,0 +1,31 @@
+import BaseApiService from './BaseApiService';
+
+interface I<%= name %>DTO {}
+
+interface I<%= name %>Param {
+	id?: number;
+	perPage?: number;
+	page?: number;
+}
+export class <%= name %>Service extends BaseApiService {
+	create(dto: I<%= name %>DTO) {
+		return this.basePOST('', {}, dto, true); 
+	}
+
+	read(param: I<%= name %>Param) {
+		const forgeParam = { limit: 0, offset: 0 };
+		forgeParam.limit = param.perPage ? param.perPage : 5;
+		forgeParam.offset = param.page ? param.page * forgeParam.limit : 0;
+
+		if (isNaN(parseInt(param.id as any))) return this.baseGET('', param, true);
+		else return this.baseGET('' + parseInt(param.id as any), {}, true);
+	}
+
+	update(dto: I<%= name %>DTO, param: I<%= name %>Param) {
+		return this.basePUT('' + parseInt(param.id as any), {}, dto, true); 
+	}
+
+	delete(param: I<%= name %>Param) {
+		return this.baseDELETE('' + parseInt(param.id as any), {}, true); 
+	}
+}
