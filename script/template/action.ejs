@@ -1,4 +1,4 @@
-import { ActionReducerMapBuilder, createAsyncThunk } from '@reduxjs/toolkit';
+import { ActionReducerMapBuilder, createAsyncThunk, Draft } from '@reduxjs/toolkit';
 import { WritableDraft } from '@reduxjs/toolkit/node_modules/immer/dist/internal';
 import BaseApiService from '../../_shared/service/BaseApiService';
 import { I<%= name %>State } from '../types/<%= name %>State.type';
@@ -6,7 +6,7 @@ import { I<%= name %>State } from '../types/<%= name %>State.type';
 const service = new BaseApiService();
 
 export const <%= name %>ActionBuilder = {
-	reset<%= name %>State: (state: WritableDraft<I<%= name %>State>) => {
+	reset<%= name %>State: (state: Draft<I<%= name %>State>) => {
 		state = {
 			status_CREATE: 'IDLE',
 			status_READ: 'IDLE',
